@@ -1,4 +1,9 @@
 <?php
+
+/*Fichier index1.php
+ * page d'accueil
+ */
+ 
 	session_start();
 	
 	$_SESSION['lang']="Francais";
@@ -25,7 +30,7 @@
 			
 		function verif()
 		{		
-			
+			//pour gerer la verification des données transmise par l'utilisateurs
 			$("#t").click(function() 
 			{ 
 				
@@ -33,7 +38,7 @@
 				{
 					url : "check.php", // on donne l'URL du fichier de traitement
 					type : 'POST', // la requête est de type POST
-					data : "pseudo=" + $("#pseudo").val() + "#" + $("#mdp").val(),
+					data : "pseudo=" + $("#pseudo").val() + "#" + $("#mdp").val(), //on envoie le pseudo concatene au mot de passe
 					success : function(ok)
 					{
 						if (ok != "")
@@ -55,8 +60,9 @@
 			
 			
 			
-		function onChangeLang()
+		function onChangeLang() 
 		{
+			//pour gerer le changement de langue
 			$("#selectLang").change(function()
 			{ 
 	
@@ -88,7 +94,9 @@
 	<body>
 		<h1>Hello, ca biche ?</h1>
 	</body>
-
+	
+		<!-- Détail du formulaire lançant page1.php (connexion) -->
+	
 	<form id="form1" action="page1.php" method="POST">
 	<div id = "ratel"></div>
 			
@@ -101,6 +109,7 @@
 			
 	</form>
 
+		<!-- Selecteur de langue -->
 	<form method="post" action="message.php">
 		<p><select id="selectLang">
 				<option value="Francais">Francais</option>
@@ -108,6 +117,7 @@
 		</select></p>
 		</form> 
 
+		<!-- Détail du formulaire lançant formulaire.php (inscription) -->
 	
 	<form id="form2" action="formulaire.php" method="POST">
 	<p><input type="submit" value="Inscription / Registration"/></p>

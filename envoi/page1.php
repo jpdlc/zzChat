@@ -1,7 +1,11 @@
 <?php
-
+/*Fichier page1.php
+ * gère la page principale (salon de discussion)
+ */
+ 
 session_start();
 
+//gère l'affichage en fonction de la langue choisie
 function to_lang($string, $lang)
 {
 	$result = "";
@@ -34,6 +38,7 @@ function to_lang($string, $lang)
 	}
 }
 
+//vérification de connexion
 if (isset($_SESSION['nom']))
 {
 	$nom = $_SESSION['nom'];
@@ -62,7 +67,6 @@ else
 				setTimeout( function(){
 					
 					// on lance une requête AJAX
-					
 					$.ajax({
 						url : "charger.php",
 						type : 'POST',
@@ -146,6 +150,7 @@ else
 			
 			}
 			
+			// écrire un message en gras
 			function Gras()
 			{
 				
@@ -169,6 +174,7 @@ else
 			
 			}
 			
+			//écrire un message en italique
 			function Italique()
 			{
 				
@@ -192,7 +198,7 @@ else
 			
 			}
 			
-			
+			//souligner son message
 			function Souligner()
 			{
 				
@@ -216,6 +222,7 @@ else
 			
 			}
 			
+			//changer la couleur de son message
 			function Couleur()
 			{
 				
@@ -239,6 +246,7 @@ else
 			
 			}
 			
+			// la scrollbarre reste en bas
 			function stayDown()
 			{
 				var objDiv = document.getElementById("divMessages");
@@ -267,6 +275,8 @@ else
 	<?php
 	$messages = array();
 	$nomfichier = fopen('contenu.txt', 'r');
+	
+	//écriture en fin des messages
 	while(!feof($nomfichier))
 	{
 		
@@ -309,6 +319,9 @@ else
 	
 	?>
 <p>
+	
+			<!-- Description de la page -->
+	
 	<form method="POST">
 	    <?php echo "Message" ?><br/><textarea name="message" id="message"></textarea><br/>
 
@@ -339,5 +352,4 @@ else
 	</body>
 
 </html>
-<!-- <?php // echo strings[$_SESSION['lang']]['message']?> a la place de message
-//$_SESSION['lang'] !>
+>

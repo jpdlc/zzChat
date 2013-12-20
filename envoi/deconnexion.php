@@ -1,8 +1,14 @@
 <?php
-
+/*
+ * Fichier deconnexion.php
+ * gère la déconnexion de l'utilisateur
+ */
+ 
 session_start();
 $login = $_POST['login'];
 
+
+// gère le message envoyé selon la langue choisie par l'utilisateur
 function to_lang($lang)
 {
 	$result = "";
@@ -31,48 +37,35 @@ while(!feof($nomfic))
 	//print_r($connectes);
 	$i++;
 }
-//echo "apres while";
-//echo "<br>";
 
-
-//if (in_array($login, $connectes))
-//{
-	//echo "#yes!!#";
-	//echo "<br>";
-//}
-//else
-//{
-	//echo "chite!";
-	//echo "<br>";
-//}
 
 fclose($nomfic);
 
-//echo "<br>";
-//print_r($connectes);
-//echo "<br>";
-//echo "<br>";
+
 $trouve=array_search($login, $connectes);
 	
 echo '<p>'.to_lang($_SESSION['lang']).'</p>' ;
 
 session_destroy();
 session_start();
-//setcookie("auth", "", time() - 3600);
+
 
 if ($trouve != 999)
 {
-	//echo "dans if";
 	
-
+	
+	//suppression du login dans le tableau des connectés
 	array_splice($connectes, $trouve, 1);
 	
-	//print_r($connectes);
+	
 	$nomficbis = fopen('connectes.txt', 'w');
+	
 	if (ftruncate($nomficbis, 0))
 	{
 		echo "";
 	}
+	
+	// si l'effacement du fichier a rencontré un erreur
 	else
 	{
 		echo "erreur truncate. merci de prevenir le webmaster";
@@ -81,6 +74,7 @@ if ($trouve != 999)
 
 
 	$i=0;
+	//boucle de réécriture du fichier
 	while($i<count($connectes))
 	{
 		fwrite($nomficbis, $connectes[$i]);
@@ -93,16 +87,16 @@ if ($trouve != 999)
 		$i++;
 	}
 
-	//print_r($connectes);
-	//fwrite($nomficbis, $connectes[0]);
-	
+
 	
 	fclose($nomficbis);
 	
-	//set($_COOKIE['auth'], "", time() - 3600);
+	//redirige vers la page index1.php
 
 	header("Refresh: 1; URL=index1.php");
 }
+
+//ça doit pas arriver
 else
 {
 	echo "merde !";

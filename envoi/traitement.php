@@ -1,4 +1,7 @@
 <?php
+/* Fichier traitement.php
+ * affichage du message dans la zone réservée
+ */
 
 	date_default_timezone_set('UTC');
 	$pseudo = $_SESSION['nom'];

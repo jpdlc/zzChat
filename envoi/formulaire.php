@@ -1,6 +1,12 @@
 <?php
+
+/*Fichier formulaire.php
+ * formulaire d'inscription
+ */
+ 
 session_start();
 
+//gère l'affichage en fonction de la langue choisie
 function to_lang($string, $lang)
 {	
 	
@@ -46,10 +52,14 @@ function to_lang($string, $lang)
 	
 	</head>
 	<body>
-		<h1>Formulaire d'inscription</h1>
+	<?php
+		echo '<h1>' .to_lang('Formulaire', $_SESSION['lang']). '</h1>'; ?>
 
 	
 	</body>
+			
+			<!-- Détail du formulaire lançant la page inscription.php -->
+		
 		<form id="form1" action="inscription.php" method="post">
 			<p>
 		

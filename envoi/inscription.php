@@ -1,6 +1,11 @@
 <?php
+
+/* Fichier inscription.php
+ * gère l'inscription d'un nouveau venu
+ */
 	session_start();
 	
+	//gère l'affichage en fonction de la langue choisie
 	function to_lang($string, $lang)
 	{
 		$result = "";
@@ -32,6 +37,7 @@
 		$nomfichier = fopen('id.txt', 'r+');
 		$logtrouve = false;
 	
+		// parcours de id.txt à la recherche du pseudo
 		while(!feof($nomfichier) && $logtrouve == false)
 		{
 			//$ligne = fgets($nomfichier);
@@ -51,10 +57,11 @@
 	
 		fclose($nomfichier);
 
+		// si le pseudo n'appartient à personne
 		if ($logtrouve == false)
 		{
 			$nomfichier=fopen('id.txt', 'a'); 
-			fwrite($nomfichier, $login); //passage a la ligne?
+			fwrite($nomfichier, $login); 
 			fwrite($nomfichier, "\n");
 			fwrite($nomfichier, md5($mdp));
 			fwrite($nomfichier, "\n");
